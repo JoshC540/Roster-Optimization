@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 def determine_fitness(individual, carerList):
     score = 0
     last_name = ""
@@ -18,16 +19,41 @@ def determine_fitness(individual, carerList):
                     #print(name)
                     carer = carerList.get_carer(name)
                     #print(carer)
-                    if group[j] == group[j-1]:
-                        if carer.preferredPatternDay == 1:      
-                            score = score + 4
-                        elif carer.preferredPatternDay == 2:
-                            score = score - 5
+                    
+                    
+                    #if its a day
+                    if j == 0:
+                        if group[j] == group[j-1]:
+                            if carer.preferredPatternDay == 1:  
+                                print("TEST")
+                                score = score + 10
+                            elif carer.preferredPatternDay == 2:
+                                score = score - 5
+                        else:
+                            if carer.preferredPatternDay == 2:
+                                score = score + 10
+                            elif carer.preferredPatternDay == 1:
+                                score = score - 5
+                    if j == 1:
+                        if group[j] == group[j-1]:
+                            if carer.preferredPatternNight == 1:      
+                                score = score + 10
+                            elif carer.preferredPatternNight == 2:
+                                score = score - 5
+                        else:
+                            if carer.preferredPatternNight == 2:
+                                score = score + 10
+                            elif carer.preferredPatternNight == 1:
+                                score = score - 5
+                    
+                    if carer.days == True and j == 0:      
+                        score = score + 50
+                    elif carer.nights == True and j == 1:      
+                        score = score + 50
                     else:
-                        if carer.preferredPatternDay == 2:
-                            score = score + 4
-                        elif carer.preferredPatternDay == 1:
-                            score = score - 5
+                        score = score - 10000
+                    
+                        
                     
                     #Checking between days
                     if last_name == name:
@@ -40,14 +66,29 @@ def determine_fitness(individual, carerList):
                     carer_days = carer.prefferedDays
         
                     if carer_days[day_index] == 1:
-                        score += 20
+                        score += 50
                     elif carer_days[day_index] == -1:
-                        score -= 25
+                        score -= 10
                         
             else:
                 score = score - 10000
 
-    
+
+
+    flattened_list = [item for sublist in individual for item in sublist]
+
+    shift_count = Counter(flattened_list)
+
+    for carer, count in shift_count.items():
+        if count / 6 > 5:
+            score = score - 10000
+        if count / 6 > 4:
+            score = score - 1000
+        if count / 6 < 2:
+            score = score - 100
+        if count / 6 <= 4:
+            score = score + 10
+
     
   
     if score < 0:

@@ -1,12 +1,10 @@
 class Carer:
-    def __init__(self, name, preferredPatternDay, preferredPatternNight, preferredDays, preferredNights, numberOfShifts, averageHours, daysOff, days, nights):
+    def __init__(self, name, preferredPatternDay, preferredPatternNight, preferredDays, preferredNights, daysOff, days, nights):
         self.name = name
         self.preferredPatternDay = preferredPatternDay
         self.preferredPatternNight = preferredPatternNight
         self.prefferedDays = preferredDays
         self.prefferedNights = preferredNights
-        self.numberOfShifts = numberOfShifts
-        self.averageHours = averageHours
         self.daysOff = daysOff
         self.days = days
         self.nights = nights

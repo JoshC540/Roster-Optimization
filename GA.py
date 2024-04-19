@@ -1,7 +1,7 @@
 import random
 import threading
 from fitness import determine_fitness
-
+import time
 
 
 def calculate_fitness(individual, carerList):
@@ -9,11 +9,26 @@ def calculate_fitness(individual, carerList):
     return fitness
 
 # Function to generate a random individual
-def generate_individual(n, names, shifts_per_day):
+def generate_individual(n, names, carerList, shifts_per_day, shifts_per_night):
     individual = []
+    day_carers = carerList.get_day_carers()
+    night_carers = carerList.get_night_carers()
+    
     for day in range(n):
-        shifts = random.choices(names, k = shifts_per_day)
+        shifts = []
+        day_shifts = random.sample(day_carers, k = shifts_per_day)
+        for name in day_shifts:
+            shifts.append(name)
+            if name in night_carers:
+                night_carers.remove(name)
+                
+        night_shifts = random.sample(night_carers, k = shifts_per_day)
+        for name in night_shifts:
+            shifts.append(name)
+        
         individual.append(shifts)
+        
+        print(individual)
     return individual
 
 # Function to perform crossover between two individuals
@@ -35,16 +50,16 @@ def mutate(individual, mutation_rate, names):
     return mutated_individual
 
 # Function to run genetic algorithm for a single array
-def run_genetic_algorithm(population_size, n, carerList, mutation_rate, generations, shifts_per_day):
+def run_genetic_algorithm(population_size, n, carerList, mutation_rate, generations, shifts_per_day, shifts_per_night):
     names = carerList.get_carer_names()
-    population = [generate_individual(n, names, shifts_per_day) for _ in range(population_size)]
+    population = [generate_individual(n, names, carerList, shifts_per_day, shifts_per_night) for _ in range(population_size)]
     
     for _ in range(generations):
         percent = (_/generations) * 100
         print(f"{percent}%")
         # Evaluate fitness
         fitness_scores = [calculate_fitness(individual, carerList) for individual in population]
-        
+        #print(fitness_scores)
         # Select parents
         selected_parents = random.choices(population, weights=fitness_scores, k=2)
         # Perform crossover and mutation
@@ -59,13 +74,13 @@ def run_genetic_algorithm(population_size, n, carerList, mutation_rate, generati
     return best_individual, calculate_fitness(best_individual, carerList)
 
 # Function to run genetic algorithm concurrently for multiple arrays using threading
-def run_concurrent_genetic_algorithm(population_size, n, carerList, mutation_rate, generations, num_arrays, shifts_per_day):
+def run_concurrent_genetic_algorithm(population_size, n, carerList, mutation_rate, generations, num_arrays, shifts_per_day, shifts_per_night):
     results = []
     threads = []
 
     # Define worker function for each thread
     def worker():
-        result = run_genetic_algorithm(population_size, n, carerList, mutation_rate, generations, shifts_per_day)
+        result = run_genetic_algorithm(population_size, n, carerList, mutation_rate, generations, shifts_per_day, shifts_per_night)
         results.append(result)
 
     # Create and start threads

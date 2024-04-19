@@ -28,6 +28,16 @@ class CarerList:
             return self.carersAvailable[index]
         except Exception:
             return None
+    
+    def get_day_carers(self):
+        eligible_carers = [carer.name for carer in self.carersAvailable if carer.days]
+        return eligible_carers
+   
+    
+    def get_night_carers(self):
+        eligible_carers = [carer.name for carer in self.carersAvailable if carer.nights]
+        return eligible_carers
+        
         
     
         
