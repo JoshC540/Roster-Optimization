@@ -40,6 +40,8 @@ def run_genetic_algorithm(population_size, n, carerList, mutation_rate, generati
     population = [generate_individual(n, names, shifts_per_day) for _ in range(population_size)]
     
     for _ in range(generations):
+        percent = (_/generations) * 100
+        print(f"{percent}%")
         # Evaluate fitness
         fitness_scores = [calculate_fitness(individual, carerList) for individual in population]
         

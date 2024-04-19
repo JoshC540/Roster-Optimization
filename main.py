@@ -27,6 +27,15 @@ patientOne.add_to_list(jim)
 tim = Carer("tim", 0, 0, [0, 0, 0, 0, 0, -1, -1], [], 0, 0, [], False, True)
 patientOne.add_to_list(tim)
 
+harry = Carer("harry", 0, 0, [0, 0, 0, 0, 0, -1, -1], [], 0, 0, [], False, True)
+patientOne.add_to_list(harry)
+
+megan = Carer("megan", 0, 0, [0, 0, 0, 0, 0, 0, 0], [], 0, 0, [], False, True)
+patientOne.add_to_list(megan)
+
+albert = Carer("albert", 0, 0, [0, 0, 0, 0, 0, 0, 0], [], 0, 0, [], False, True)
+patientOne.add_to_list(albert)
+
 
 
 
@@ -36,13 +45,13 @@ patientOne.add_to_list(tim)
 
 
 num_of_weeks = 6
-population_size = 100
+population_size = 1000
 n = 7 * num_of_weeks  # Length of the array
 mutation_rate = 0.01
 generations = 10000
 shifts_per_day = 2
 
-num_arrays = 20  # Number of arrays to generate concurrently
+num_arrays = 1  # Number of arrays to generate concurrently
 
 
 results = run_concurrent_genetic_algorithm(population_size, n, patientOne, mutation_rate, generations, num_arrays, shifts_per_day)
