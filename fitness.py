@@ -23,9 +23,8 @@ def determine_fitness(individual, carerList):
                     
                     #if its a day
                     if j == 0:
-                        if group[j] == group[j-1]:
+                        if group[j] == individual[i - 1][j]:
                             if carer.preferredPatternDay == 1:  
-                                print("TEST")
                                 score = score + 10
                             elif carer.preferredPatternDay == 2:
                                 score = score - 5
@@ -35,7 +34,7 @@ def determine_fitness(individual, carerList):
                             elif carer.preferredPatternDay == 1:
                                 score = score - 5
                     if j == 1:
-                        if group[j] == group[j-1]:
+                        if group[j] == individual[i - 1][j]:
                             if carer.preferredPatternNight == 1:      
                                 score = score + 10
                             elif carer.preferredPatternNight == 2:

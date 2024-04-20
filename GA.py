@@ -1,7 +1,7 @@
 import random
 import threading
 from fitness import determine_fitness
-import time
+
 
 
 def calculate_fitness(individual, carerList):
@@ -11,10 +11,10 @@ def calculate_fitness(individual, carerList):
 # Function to generate a random individual
 def generate_individual(n, names, carerList, shifts_per_day, shifts_per_night):
     individual = []
-    day_carers = carerList.get_day_carers()
-    night_carers = carerList.get_night_carers()
     
     for day in range(n):
+        day_carers = carerList.get_day_carers()
+        night_carers = carerList.get_night_carers()
         shifts = []
         day_shifts = random.sample(day_carers, k = shifts_per_day)
         for name in day_shifts:
@@ -28,7 +28,7 @@ def generate_individual(n, names, carerList, shifts_per_day, shifts_per_night):
         
         individual.append(shifts)
         
-        print(individual)
+        #print(individual)
     return individual
 
 # Function to perform crossover between two individuals
