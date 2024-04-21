@@ -1,7 +1,9 @@
 from carer import Carer
 from carerList import CarerList
 from GA import run_concurrent_genetic_algorithm
+from RM import run_reward_machine
 import time
+import matplotlib.pyplot as plt
 
 # Record the start time
 start_time = time.time()
@@ -55,13 +57,17 @@ num_of_weeks = 6
 population_size = 1000
 n = 7 * num_of_weeks  # Length of the array
 mutation_rate = 0.01
-generations = 1000
+generations = 10000
 shifts_per_day = 1
 shifts_per_night = 1
 
 num_arrays = 1  # Number of arrays to generate concurrently
 
+#results, best = run_reward_machine(population_size, mutation_rate, n, patientOne, generations, shifts_per_day, shifts_per_night)
+#print(results)
+#print(best)
 
+"""
 results = run_concurrent_genetic_algorithm(population_size, n, patientOne, mutation_rate, generations, num_arrays, shifts_per_day, shifts_per_night)
 print(results)
 for i, (best_individual, fitness) in enumerate(results):
@@ -69,6 +75,35 @@ for i, (best_individual, fitness) in enumerate(results):
 
 best_overall_individual, best_overall_fitness = max(results, key=lambda x: x[1])
 print(f"\n\nBest overall individual: {best_overall_individual}, Fitness: {best_overall_fitness}")
+"""
+
+"""
+Graphing Time vs Fitness
+"""
+generations = [10, 100, 250, 500, 1000, 2500, 5000, 7500, 10000]
+times = []
+fitnesses = []
+for generation in generations:
+    start_time_graph = time.time()
+    
+    results = run_concurrent_genetic_algorithm(population_size, n, patientOne, mutation_rate, generation, num_arrays, shifts_per_day, shifts_per_night)
+    
+    end_time_graph = time.time()
+    execution_time_graph = end_time_graph - start_time_graph
+    times.append(execution_time_graph)
+    
+    for i, (best_individual, fitness) in enumerate(results):
+        fitnesses.append(fitness)
+
+plt.plot(times, fitnesses, marker='o', label='Genetic Algorithm')
+
+plt.title('Genetic Algorithm Fitness vs run time')
+plt.xlabel('Runtime in seconds')
+plt.ylabel('Fitness')
+plt.legend()
+plt.grid(True)
+
+plt.show()
 
 
 # Record the end time
