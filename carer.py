@@ -8,7 +8,10 @@ class Carer:
         self.daysOff = daysOff
         self.days = days
         self.nights = nights
+     
         
+     
+# Used for each carer so that they are standardised
 # Name is name
 # preferredPatternDay: 0 = N/A, 1 = consecutive, 2 = every second day
 # preferredPatternNight: 0 = N/A, 1 = consecutive, 2 = every second night 

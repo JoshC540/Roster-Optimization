@@ -1,0 +1,64 @@
+{
+  "carers": [
+    {
+      "name": "mary",
+      "preferredPatternDay": 0,
+      "preferredPatternNight": 0,
+      "preferredDays": [0, 0, 0, 0, 0, 0, 0],
+      "preferredNights": [0, 0, 0, 0, 0, 0, 0],
+      "daysOff": [],
+      "days": true,
+      "nights": false
+    },
+    {
+      "name": "jane",
+      "preferredPatternDay": 1,
+      "preferredPatternNight": 1,
+      "preferredDays": [1, 0, 1, -1, 1, -1, 0],
+      "preferredNights": [1, 0, 1, -1, 1, -1, 0],
+      "daysOff": [],
+      "days": true,
+      "nights": false
+    },
+    {
+      "name": "sue",
+      "preferredPatternDay": 0,
+      "preferredPatternNight": 0,
+      "preferredDays": [1, -1, -1, 0, 0, 0, 0],
+      "preferredNights": [0, 1, 1, 0, 0, 0, 0],
+      "daysOff": [],
+      "days": true,
+      "nights": true
+    },
+    {
+      "name": "beth",
+      "preferredPatternDay": 2,
+      "preferredPatternNight": 1,
+      "preferredDays": [1, 1, 1, 0, 0, 0, 0],
+      "preferredNights": [-1, -1, -1, 0, 0, 0, 0],
+      "daysOff": [],
+      "days": true,
+      "nights": false
+    },
+    {
+      "name": "tom",
+      "preferredPatternDay": 2,
+      "preferredPatternNight": 0,
+      "preferredDays": [0, 0, 0, 0, -1, -1, -1],
+      "preferredNights": [0, 0, 0, 0, 1, 1, 1],
+      "daysOff": ["2024-05-05", "2024-05-06"],
+      "days": false,
+      "nights": true
+    },
+    {
+      "name": "jim",
+      "preferredPatternDay": 1,
+      "preferredPatternNight": 2,
+      "preferredDays": [0, 0, 0, 0, 1, 1, 1],
+      "preferredNights": [1, 1, 1, 1, 0, 0, 0],
+      "daysOff": [],
+      "days": false,
+      "nights": true
+    }
+  ]
+}
